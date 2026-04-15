@@ -17,13 +17,16 @@
       --shadow:0 10px 30px rgba(15, 23, 42, .08);
       --radius:18px;
     }
-    *{box-sizing:border-box}
+
+    * { box-sizing: border-box; }
+
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
       background:var(--bg);
       color:var(--text);
     }
+
     .header{
       background:var(--panel-soft);
       border-bottom:1px solid var(--line);
@@ -32,10 +35,28 @@
       justify-content:space-between;
       gap:16px;
       align-items:flex-start;
+      flex-wrap:wrap;
     }
-    .header h1{margin:0 0 8px;font-size:clamp(28px,5vw,48px)}
-    .header p{margin:0;color:var(--muted);max-width:820px;font-size:clamp(15px,2.5vw,18px);line-height:1.45}
-    .container{max-width:1150px;margin:0 auto;padding:24px}
+
+    .header h1{
+      margin:0 0 8px;
+      font-size:clamp(28px,5vw,48px);
+    }
+
+    .header p{
+      margin:0;
+      color:var(--muted);
+      max-width:820px;
+      font-size:clamp(15px,2.5vw,18px);
+      line-height:1.45;
+    }
+
+    .container{
+      max-width:1150px;
+      margin:0 auto;
+      padding:24px;
+    }
+
     .btn{
       border:none;
       border-radius:14px;
@@ -45,12 +66,21 @@
       transition:.15s ease;
       white-space:nowrap;
     }
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-primary:hover{background:var(--primary-dark)}
-    .btn-secondary{background:#e8edf5;color:var(--text)}
-    .btn-danger{background:#fee2e2;color:#b91c1c}
-    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+    .btn:hover{ transform:translateY(-1px); }
+
+    .btn-primary{ background:var(--primary); color:#fff; }
+    .btn-primary:hover{ background:var(--primary-dark); }
+    .btn-secondary{ background:#e8edf5; color:var(--text); }
+    .btn-danger{ background:#fee2e2; color:#b91c1c; }
+
+    .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
     .toolbar{
       display:flex;
       justify-content:space-between;
@@ -59,14 +89,21 @@
       flex-wrap:wrap;
       margin-bottom:20px;
     }
-    .section-title{margin:0 0 18px;font-size:36px}
-    .hidden{display:none !important}
+
+    .section-title{
+      margin:0 0 18px;
+      font-size:36px;
+    }
+
+    .hidden{ display:none !important; }
+
     .card{
       background:var(--panel);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
+
     .empty{
       padding:28px;
       color:var(--muted);
@@ -75,23 +112,35 @@
       background:#fff;
       border-radius:var(--radius);
     }
+
     .project-grid{
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
       gap:18px;
     }
+
     .project-card{
       padding:20px;
       cursor:pointer;
     }
-    .project-card h3{margin:0 0 8px;font-size:22px}
-    .project-card p{margin:0;color:var(--muted)}
+
+    .project-card h3{
+      margin:0 0 8px;
+      font-size:22px;
+    }
+
+    .project-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
     .top-stats{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:12px;
       margin:18px 0 22px;
     }
+
     .stat{
       padding:16px;
       background:#fff;
@@ -99,35 +148,72 @@
       border-radius:16px;
       box-shadow:var(--shadow);
     }
-    .stat-label{font-size:13px;color:var(--muted);margin-bottom:6px}
-    .stat-value{font-size:24px;font-weight:700}
+
+    .stat-label{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+
+    .stat-value{
+      font-size:24px;
+      font-weight:700;
+    }
+
     .form-card{
       padding:18px;
       margin-bottom:20px;
     }
+
     label{
       display:block;
       font-weight:700;
       font-size:14px;
       margin-bottom:7px;
     }
-    input[type="text"], input[type="date"], select, textarea{
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea{
       width:100%;
+      min-width:0;
       padding:12px 13px;
       border-radius:12px;
       border:1px solid #cad4e0;
       font-size:16px;
       background:#fff;
     }
-    textarea{min-height:92px;resize:vertical}
-    .grid-2,.grid-4{
+
+    textarea{
+      min-height:92px;
+      resize:vertical;
+    }
+
+    .grid-2,
+    .grid-4{
       display:grid;
       gap:14px;
     }
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .task-list{display:flex;flex-direction:column;gap:14px}
-    .task-card{padding:18px}
+
+    .grid-2{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .grid-4{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+    .task-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .task-card{
+      padding:18px;
+    }
+
     .task-head{
       display:flex;
       justify-content:space-between;
@@ -135,13 +221,40 @@
       align-items:flex-start;
       flex-wrap:wrap;
     }
-    .task-title-wrap{display:flex;gap:12px;align-items:flex-start;flex:1}
-    .task-checkbox{
-      width:22px;height:22px;margin-top:2px;
+
+    .task-title-wrap{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      flex:1;
+      min-width:0;
     }
-    .task-title{font-size:20px;font-weight:700;margin-bottom:8px}
-    .task-notes{color:#475569;line-height:1.45;margin-bottom:12px}
-    .meta{display:flex;gap:10px;flex-wrap:wrap}
+
+    .task-checkbox{
+      width:22px;
+      height:22px;
+      margin-top:2px;
+      flex:0 0 auto;
+    }
+
+    .task-title{
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .task-notes{
+      color:#475569;
+      line-height:1.45;
+      margin-bottom:12px;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .badge{
       display:inline-flex;
       align-items:center;
@@ -151,18 +264,39 @@
       font-weight:700;
       border:1px solid transparent;
     }
-    .badge-priority-low{background:#e9f8ee;color:#166534}
-    .badge-priority-medium{background:#fff7df;color:#a16207}
-    .badge-priority-high{background:#ffe8dc;color:#c2410c}
-    .badge-priority-urgent{background:#ffe2e2;color:#b91c1c}
-    .badge-neutral{background:#edf2f7;color:#475569}
-    .completed-text{text-decoration:line-through;opacity:.65}
-    .muted{color:var(--muted)}
-    .small{font-size:13px}
-    @media (max-width: 860px){
-      .header{flex-direction:column}
-      .top-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .grid-2,.grid-4{grid-template-columns:1fr}
+
+    .badge-priority-low{ background:#e9f8ee; color:#166534; }
+    .badge-priority-medium{ background:#fff7df; color:#a16207; }
+    .badge-priority-high{ background:#ffe8dc; color:#c2410c; }
+    .badge-priority-urgent{ background:#ffe2e2; color:#b91c1c; }
+    .badge-neutral{ background:#edf2f7; color:#475569; }
+
+    .completed-text{
+      text-decoration:line-through;
+      opacity:.65;
+    }
+
+    .muted{ color:var(--muted); }
+
+    .filters{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin:0 0 20px;
+    }
+
+    @media (max-width: 980px){
+      .top-stats{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .grid-4{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .filters{ grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width: 720px){
+      .header{ flex-direction:column; }
+      .grid-2,
+      .grid-4,
+      .filters{ grid-template-columns:1fr; }
+      .task-head{ flex-direction:column; }
     }
   </style>
 </head>
@@ -250,8 +384,35 @@
         </div>
       </div>
 
-      <div class="toolbar">
+      <div class="toolbar" style="margin-top:8px;">
         <h3 style="margin:0;font-size:26px;">Tasks</h3>
+      </div>
+
+      <div class="filters">
+        <div>
+          <label for="filterPriority">Filter by Priority</label>
+          <select id="filterPriority">
+            <option value="all">All priorities</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+        </div>
+        <div>
+          <label for="filterAssigned">Filter by Team Member</label>
+          <select id="filterAssigned">
+            <option value="all">All team members</option>
+          </select>
+        </div>
+        <div>
+          <label for="filterStatus">Filter by Status</label>
+          <select id="filterStatus">
+            <option value="all">All statuses</option>
+            <option value="open">Open</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
       </div>
 
       <div id="taskList" class="task-list"></div>
@@ -259,7 +420,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "taskManager_full_featured_v1";
+    const STORAGE_KEY = "taskManager_full_featured_v2";
     let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || { projects: [] };
     let currentProjectId = null;
     let editingTaskId = null;
@@ -271,6 +432,10 @@
     const taskFormCard = document.getElementById("taskFormCard");
     const projectTitle = document.getElementById("projectTitle");
     const projectSubtitle = document.getElementById("projectSubtitle");
+
+    const filterPriority = document.getElementById("filterPriority");
+    const filterAssigned = document.getElementById("filterAssigned");
+    const filterStatus = document.getElementById("filterStatus");
 
     function saveState(){
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -319,11 +484,23 @@
       const completed = project.tasks.filter(t => t.completed).length;
       const open = total - completed;
       const high = project.tasks.filter(t => ["High","Urgent"].includes(t.priority)).length;
+
       document.getElementById("statTotal").textContent = total;
       document.getElementById("statCompleted").textContent = completed;
       document.getElementById("statOpen").textContent = open;
       document.getElementById("statHigh").textContent = high;
       projectSubtitle.textContent = total ? `${completed} completed of ${total}` : "No tasks yet";
+    }
+
+    function renderAssignedFilter(project){
+      const names = [...new Set(project.tasks.map(t => (t.assignedTo || "").trim()).filter(Boolean))].sort();
+      filterAssigned.innerHTML = '<option value="all">All team members</option>';
+      names.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        filterAssigned.appendChild(option);
+      });
     }
 
     function showHome(){
@@ -340,23 +517,27 @@
       editingTaskId = null;
       const project = getCurrentProject();
       if(!project) return;
+
       homeScreen.classList.add("hidden");
       projectScreen.classList.remove("hidden");
       projectTitle.textContent = project.name;
       taskFormCard.classList.add("hidden");
       clearTaskForm();
       renderStats(project);
+      renderAssignedFilter(project);
       renderTasks();
     }
 
     function newProject(){
       const name = prompt("Project name");
       if(!name || !name.trim()) return;
+
       state.projects.push({
         id: uid(),
         name: name.trim(),
         tasks: []
       });
+
       saveState();
       renderProjects();
     }
@@ -364,8 +545,10 @@
     function renameProject(){
       const project = getCurrentProject();
       if(!project) return;
+
       const name = prompt("Rename project", project.name);
       if(!name || !name.trim()) return;
+
       project.name = name.trim();
       saveState();
       projectTitle.textContent = project.name;
@@ -432,6 +615,7 @@
 
       saveState();
       renderStats(project);
+      renderAssignedFilter(project);
       renderTasks();
       hideTaskForm();
       renderProjects();
@@ -440,6 +624,7 @@
     function editTask(taskId){
       const project = getCurrentProject();
       if(!project) return;
+
       const task = project.tasks.find(t => t.id === taskId);
       if(!task) return;
 
@@ -457,11 +642,13 @@
     function deleteTask(taskId){
       const project = getCurrentProject();
       if(!project) return;
-      const ok = confirm("Delete this task?");
-      if(!ok) return;
+
+      if(!confirm("Delete this task?")) return;
+
       project.tasks = project.tasks.filter(t => t.id !== taskId);
       saveState();
       renderStats(project);
+      renderAssignedFilter(project);
       renderTasks();
       renderProjects();
     }
@@ -469,26 +656,56 @@
     function toggleTask(taskId){
       const project = getCurrentProject();
       if(!project) return;
+
       const task = project.tasks.find(t => t.id === taskId);
       if(!task) return;
+
       task.completed = !task.completed;
       saveState();
       renderStats(project);
+      renderAssignedFilter(project);
       renderTasks();
       renderProjects();
+    }
+
+    function getFilteredTasks(project){
+      let tasks = [...project.tasks];
+
+      if(filterPriority.value !== "all"){
+        tasks = tasks.filter(t => t.priority === filterPriority.value);
+      }
+
+      if(filterAssigned.value !== "all"){
+        tasks = tasks.filter(t => (t.assignedTo || "").trim() === filterAssigned.value);
+      }
+
+      if(filterStatus.value === "open"){
+        tasks = tasks.filter(t => !t.completed);
+      } else if(filterStatus.value === "completed"){
+        tasks = tasks.filter(t => t.completed);
+      }
+
+      return tasks;
     }
 
     function renderTasks(){
       const project = getCurrentProject();
       if(!project) return;
+
       taskList.innerHTML = "";
+      const tasks = getFilteredTasks(project);
 
       if(project.tasks.length === 0){
         taskList.innerHTML = '<div class="empty">No tasks yet. Tap <strong>+ Add Task</strong> to create one.</div>';
         return;
       }
 
-      project.tasks.forEach(task => {
+      if(tasks.length === 0){
+        taskList.innerHTML = '<div class="empty">No tasks match the current filters.</div>';
+        return;
+      }
+
+      tasks.forEach(task => {
         const priorityClass = "badge-priority-" + String(task.priority || "Medium").toLowerCase();
         const card = document.createElement("div");
         card.className = "card task-card";
@@ -517,6 +734,7 @@
 
         const checkbox = card.querySelector(".task-checkbox");
         const buttons = card.querySelectorAll("button");
+
         checkbox.addEventListener("change", () => toggleTask(task.id));
         buttons[0].addEventListener("click", () => editTask(task.id));
         buttons[1].addEventListener("click", () => deleteTask(task.id));
@@ -531,6 +749,10 @@
     document.getElementById("toggleTaskFormBtn").addEventListener("click", showTaskForm);
     document.getElementById("saveTaskBtn").addEventListener("click", saveTask);
     document.getElementById("cancelTaskBtn").addEventListener("click", hideTaskForm);
+
+    filterPriority.addEventListener("change", renderTasks);
+    filterAssigned.addEventListener("change", renderTasks);
+    filterStatus.addEventListener("change", renderTasks);
 
     renderProjects();
   </script>
