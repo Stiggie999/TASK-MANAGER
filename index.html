@@ -6,10 +6,11 @@
 
 <style>
 body {font-family: Arial; margin:0; background:#eef2f7;}
-.header {background:#e9eef8; padding:20px; display:flex; justify-content:space-between;}
-button {padding:10px; border:none; border-radius:10px; cursor:pointer;}
+.header {background:#e9eef8; padding:20px; display:flex; justify-content:space-between; align-items:center;}
+button {padding:10px 14px; border:none; border-radius:10px; cursor:pointer;}
 .primary {background:#2563eb; color:white;}
 .card {background:white; padding:15px; margin:10px 0; border-radius:10px;}
+input, select {padding:8px; border-radius:8px; border:1px solid #ccc;}
 </style>
 </head>
 
@@ -20,7 +21,7 @@ button {padding:10px; border:none; border-radius:10px; cursor:pointer;}
 <button class="primary" onclick="newProject()">+ New Project</button>
 </div>
 
-<div id="projects"></div>
+<div id="projects" style="padding:20px;"></div>
 
 <div id="projectView" style="display:none; padding:20px;">
 <button onclick="goHome()">← Home</button>
@@ -29,6 +30,12 @@ button {padding:10px; border:none; border-radius:10px; cursor:pointer;}
 <h2 id="projectTitle"></h2>
 
 <input id="taskInput" placeholder="Task name">
+<select id="priority">
+<option>Low</option>
+<option selected>Medium</option>
+<option>High</option>
+</select>
+
 <button onclick="addTask()">Add Task</button>
 
 <div id="tasks"></div>
@@ -81,10 +88,12 @@ render();
 
 function addTask(){
 let input=document.getElementById("taskInput");
+let priority=document.getElementById("priority").value;
+
 if(!input.value) return;
 
 let p=data.projects.find(x=>x.id===current);
-p.tasks.push({id:Date.now(), name:input.value});
+p.tasks.push({id:Date.now(), name:input.value, priority});
 
 input.value="";
 save();
@@ -102,7 +111,7 @@ let div=document.createElement("div");
 div.className="card";
 
 div.innerHTML = `
-${t.name}
+<strong>${t.name}</strong> (${t.priority})
 <button onclick="editTask(${t.id})">Edit</button>
 <button onclick="deleteTask(${t.id})">Delete</button>
 `;
