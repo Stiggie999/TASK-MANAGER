@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Manager</title>
+<style>
+body {font-family: Arial; margin:0; background:#eef2f7;}
+.header {background:#e9eef8; padding:20px; display:flex; justify-content:space-between; align-items:center;}
+.container {padding:20px;}
+button {padding:10px 14px; border:none; border-radius:10px; cursor:pointer;}
+.primary {background:#2563eb; color:white;}
+.card {background:white; padding:15px; margin:10px 0; border-radius:10px;}
+input, select, textarea {padding:8px; border-radius:8px; border:1px solid #ccc; width:100%;}
+.grid {display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.grid-3 {display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+@media(max-width:700px){
+  .grid, .grid-3 {grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h2>Task Manager</h2>
+<button class="primary" onclick="newProject()">+ New Project</button>
+</div>
+
+<div class="container">
+<div id="home"></div>
+
+<div id="projectView" style="display:none;">
+<button onclick="goHome()">← Home</button>
+<button onclick="renameProject()">Rename Project</button>
+
+<h2 id="projectTitle"></h2>
+
+<div class="grid">
+<input id="taskTitle" placeholder="Task title">
+<input id="assigned" placeholder="Assign to">
+</div>
+
+<textarea id="notes" placeholder="Notes" style="margin-top:10px;"></textarea>
+
+<div class="grid-3" style="margin-top:10px;">
+<select id="priority">
+<option>Low</option>
+<option selected>Medium</option>
+<option>High</option>
+<option>Urgent</option>
+</select>
+
+<input type="date" id="date">
+
+<select id="status">
+<option value="false">Open</option>
+<option value="true">Completed</option>
+</select>
+</div>
+
+<button onclick="saveTask()" style="margin-top:10px;">Save Task</button>
+
+<h3>Tasks</h3>
+<div id="tasks"></div>
+</div>
+</div>
+
+<script>
+let data = JSON.parse(localStorage.getItem("data")) || {projects:[]};
+let current = null;
+let editing = null;
+
+function save(){localStorage.setItem("data", JSON.stringify(data));}
+
+function render(){
+let home=document.getElementById("home");
+home.innerHTML="";
+data.projects.forEach(p=>{
+let div=document.createElement("div");
+div.className="card";
+div.innerText=p.name;
+div.onclick=()=>openProject(p.id);
+home.appendChild(div);
+});
+}
+
+function newProject(){
+let name=prompt("Project name");
+if(!name) return;
+data.projects.push({id:Date.now(), name, tasks:[]});
+save();
+render();
+}
+
+function openProject(id){
+current=id;
+document.getElementById("home").style.display="none";
+document.getElementById("projectView").style.display="block";
+let p=data.projects.find(x=>x.id===id);
+document.getElementById("projectTitle").innerText=p.name;
+renderTasks();
+}
+
+function goHome(){
+document.getElementById("home").style.display="block";
+document.getElementById("projectView").style.display="none";
+render();
+}
+
+function saveTask(){
+let p=data.projects.find(x=>x.id===current);
+
+let task={
+id: editing || Date.now(),
+title:taskTitle.value,
+assigned:assigned.value,
+notes:notes.value,
+priority:priority.value,
+date:date.value,
+completed:status.value==="true"
+};
+
+if(editing){
+p.tasks=p.tasks.map(t=>t.id===editing?task:t);
+editing=null;
+}else{
+p.tasks.push(task);
+}
+
+taskTitle.value="";
+assigned.value="";
+notes.value="";
+date.value="";
+
+save();
+renderTasks();
+}
+
+function renderTasks(){
+let list=document.getElementById("tasks");
+list.innerHTML="";
+let p=data.projects.find(x=>x.id===current);
+
+p.tasks.forEach(t=>{
+let div=document.createElement("div");
+div.className="card";
+
+div.innerHTML=`
+<b>${t.title}</b> (${t.priority})<br>
+${t.assigned || "Unassigned"} | ${t.date || "No date"} | ${t.completed ? "Done":"Open"}
+<br><br>
+<button onclick="editTask(${t.id})">Edit</button>
+<button onclick="deleteTask(${t.id})">Delete</button>
+`;
+
+list.appendChild(div);
+});
+}
+
+function editTask(id){
+let p=data.projects.find(x=>x.id===current);
+let t=p.tasks.find(x=>x.id===id);
+
+taskTitle.value=t.title;
+assigned.value=t.assigned;
+notes.value=t.notes;
+priority.value=t.priority;
+date.value=t.date;
+status.value=t.completed;
+
+editing=id;
+}
+
+function deleteTask(id){
+let p=data.projects.find(x=>x.id===current);
+p.tasks=p.tasks.filter(t=>t.id!==id);
+save();
+renderTasks();
+}
+
+render();
+</script>
+
+</body>
+</html>
