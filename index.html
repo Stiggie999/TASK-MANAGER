@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <h1>Task Manager</h1>
+        <p class="subtitle">Manage projects, assign tasks, set priorities, and schedule by date.</p>
+      </div>
+      <div class="topbar-actions">
+        <button id="homeBtn" class="ghost hidden" type="button">← Home</button>
+        <button id="newProjectBtn" class="primary" type="button">+ New Project</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="homeView" class="view active">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <span id="projectCount" class="muted"></span>
+        </div>
+        <div id="projectGrid" class="project-grid"></div>
+      </section>
+
+      <section id="projectView" class="view">
+        <div class="section-head project-head">
+          <div>
+            <h2 id="projectTitle">Project</h2>
+            <p id="projectMeta" class="muted"></p>
+          </div>
+          <div class="filters">
+            <select id="filterStatus">
+              <option value="all">All Status</option>
+              <option value="open">Open</option>
+              <option value="done">Completed</option>
+            </select>
+            <select id="filterPriority">
+              <option value="all">All Priorities</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+            <select id="filterUser"></select>
+          </div>
+        </div>
+
+        <div class="workspace">
+          <section class="panel form-panel">
+            <h3 id="taskFormTitle">Add Task</h3>
+            <form id="taskForm">
+              <input type="hidden" id="editingTaskId" />
+              <label>
+                Task title
+                <input id="taskTitle" type="text" placeholder="Enter task title" required />
+              </label>
+              <label>
+                Notes
+                <textarea id="taskNotes" rows="4" placeholder="Optional task notes"></textarea>
+              </label>
+              <label>
+                Assign to
+                <select id="taskAssignedTo"></select>
+              </label>
+              <div class="two-col">
+                <label>
+                  Priority
+                  <select id="taskPriority">
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
+                    <option value="Urgent">Urgent</option>
+                  </select>
+                </label>
+                <label>
+                  Due date
+                  <input id="taskDueDate" type="date" />
+                </label>
+              </div>
+              <label class="checkbox-row">
+                <input id="taskCompleted" type="checkbox" />
+                Mark as completed
+              </label>
+              <div class="form-actions">
+                <button type="submit" class="primary">Save Task</button>
+                <button id="cancelEditBtn" type="button" class="ghost hidden">Cancel Edit</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel list-panel">
+            <div class="section-head small-gap">
+              <h3>Tasks</h3>
+              <span id="taskCount" class="muted"></span>
+            </div>
+            <div id="taskList" class="task-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="projectModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="section-head small-gap">
+        <h3>New Project</h3>
+        <button id="closeProjectModalBtn" class="icon-btn" type="button">✕</button>
+      </div>
+      <form id="projectForm">
+        <label>
+          Project name
+          <input id="projectName" type="text" placeholder="Enter project name" required />
+        </label>
+        <label>
+          Description
+          <textarea id="projectDescription" rows="3" placeholder="Optional project description"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="primary">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
